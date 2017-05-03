@@ -11,6 +11,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import takenoko.tech.blackboardapp.model.DrawSurfaceModel;
+import takenoko.tech.blackboardapp.model.SensitiveTouchModel;
 import takenoko.tech.blackboardapp.util.EnhCanvas;
 
 /**
@@ -23,6 +24,7 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     // モデル
     DrawSurfaceModel model = new DrawSurfaceModel();
+    SensitiveTouchModel sens;
     EnhCanvas eCanvas = new EnhCanvas();
 
     // スレッドクラス
@@ -63,6 +65,8 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         setFocusable(true);
         // このViewをトップにする
         setZOrderOnTop(true);
+        // 初期化
+        sens = new SensitiveTouchModel(context);
     }
     @Override
     public void run() {
@@ -83,6 +87,9 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         Log.i(log, event.getX() + "," + event.getY());
         float x = event.getX();
         float y = event.getY();
+        if(sens.canceler(x)) {
+            return true;
+        }
         switch(event.getAction()){
             case MotionEvent.ACTION_DOWN:
                 eCanvas.getTouchPath().moveTo(x, y);

@@ -8,14 +8,13 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.SurfaceView
 import android.view.View
-
-
+import takenoko.tech.blackboardapp.util.GLRenderer
 
 class MainActivity : AppCompatActivity() {
 
     var log = "----MainActivity----"
     var gLSurfaceView : GLSurfaceView? = null
-    var gLRender:GLRenderer? = null
+    var gLRender: GLRenderer? = null
     var backgroundView : View? = null
     var surfaceView : SurfaceView? = null
 

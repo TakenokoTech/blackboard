@@ -1,4 +1,4 @@
-package takenoko.tech.blackboardapp
+package takenoko.tech.blackboardapp.util
 
 import android.content.Context
 import android.graphics.PointF
@@ -15,7 +15,7 @@ import javax.microedition.khronos.opengles.GL10
  * Created by たけのこ on 2017/04/28.
  */
 
-class GLRenderer(context:Context) : GLSurfaceView.Renderer {
+class GLRenderer(context: Context) : GLSurfaceView.Renderer {
 
     var context : Context = context
 
