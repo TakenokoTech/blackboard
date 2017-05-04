@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
+import takenoko.tech.blackboardapp.MainActivity;
 import takenoko.tech.blackboardapp.R;
 import takenoko.tech.blackboardapp.model.MenuListModel;
 import takenoko.tech.blackboardapp.model.StaticModel;
@@ -39,6 +40,7 @@ public class MenuListView extends ListView {
         public void onClick(View view) {
             Log.i(log, "OnClickToPen");
             StaticModel.setPenMode(StaticModel.PenMode.PEN);
+            ((MainActivity)context).upDate();
         }
     }
     private class OnClickToEraser implements View.OnClickListener {
@@ -46,6 +48,7 @@ public class MenuListView extends ListView {
         public void onClick(View view) {
             Log.i(log, "OnClickToEraser");
             StaticModel.setPenMode(StaticModel.PenMode.ERASER);
+            ((MainActivity)context).upDate();
         }
     }
     private class OnClickToPenSize implements View.OnClickListener {

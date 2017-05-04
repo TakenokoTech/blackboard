@@ -52,8 +52,15 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     }
     // 不要な表示のマスク
     private Canvas doMask(Canvas canvas) {
-        canvas.drawRect(sens.getMenuMasKRect(), sens.getEraserRect());
-        canvas.drawRect(sens.getDebugerMasKRect(), sens.getEraserRect());
+        if(StaticModel.getMenuMode() != StaticModel.MenuMode.INVISIBLE) {
+            canvas.drawRect(sens.getMenuMasKRect(), sens.getEraserRect());
+        }
+        if(StaticModel.getDebugMode() == StaticModel.DebugMode.VIEW) {
+            canvas.drawRect(sens.getDebugerMasKRect(), sens.getEraserRect());
+        }
+        if(StaticModel.getViewStatus() == StaticModel.ViewStatus.VIEW) {
+            canvas.drawOval(sens.getStatusMasKRect(), sens.getEraserRect());
+        }
         return canvas;
     }
     // イベント
@@ -100,9 +107,6 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         Log.i(log, event.getX() + "," + event.getY());
         float x = event.getX();
         float y = event.getY();
-        if(sens.canceler(x)) {
-            return true;
-        }
         switch(event.getAction()){
             case MotionEvent.ACTION_DOWN:
                 eCanvas.getTouchPath().moveTo(x, y);

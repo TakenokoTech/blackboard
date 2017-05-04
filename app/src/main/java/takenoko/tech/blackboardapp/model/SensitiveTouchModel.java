@@ -23,18 +23,19 @@ public class SensitiveTouchModel implements Serializable {
     final static String log = "--SensitiveTouchModel--";
 
     Context context;
-    @Getter Paint penLine = new Paint();
-    @Getter Paint blurPanLine = new Paint();
-    @Getter Paint eraserLine = new Paint();
-    @Getter Paint eraserRect = new Paint();
+    @Getter static Paint penLine = new Paint();
+    @Getter static Paint blurPanLine = new Paint();
+    @Getter static Paint eraserLine = new Paint();
+    @Getter static Paint eraserRect = new Paint();
 
     Point prevPoint = null;
-    int strokeWidth = 10;
+    @Getter static int strokeWidth = 10;
     int strokeColor = Color.argb(200, 240, 240, 240);
 
     // maskRect
     @Getter RectF menuMasKRect;
     @Getter RectF debugerMasKRect;
+    @Getter RectF statusMasKRect;
 
     public SensitiveTouchModel(Context context) {
         this.context = context;
@@ -67,9 +68,15 @@ public class SensitiveTouchModel implements Serializable {
         );
         debugerMasKRect = new RectF(
                 0,
-                model.getSurfaceY() - context.getResources().getDimension(R.dimen.debuger_height),
+                model.getSurfaceY() - context.getResources().getDimension(R.dimen.debug_height),
                 model.getSurfaceX(),
                 model.getSurfaceY()
+        );
+        statusMasKRect = new RectF(
+                model.getSurfaceX(),
+                0,
+                model.getSurfaceX() - context.getResources().getDimension(R.dimen.status_height),
+                context.getResources().getDimension(R.dimen.status_height)
         );
     }
 

@@ -23,4 +23,14 @@ public class StaticModel {
     public enum ClearMode{ NONE, CLEAR }
     @Getter @Setter
     static ClearMode clearMode = ClearMode.NONE;
+
+    /** デバックモード */
+    public enum DebugMode{ NONE, VIEW }
+    @Getter @Setter
+    static DebugMode debugMode = DebugMode.VIEW;
+
+    /** ステータス表示 */
+    public enum ViewStatus{ NONE, VIEW }
+    @Getter @Setter
+    static ViewStatus viewStatus = ViewStatus.VIEW;
 }

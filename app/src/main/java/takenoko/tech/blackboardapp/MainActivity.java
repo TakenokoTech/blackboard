@@ -11,6 +11,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import takenoko.tech.blackboardapp.model.StaticModel;
+import takenoko.tech.blackboardapp.util.Debuger;
 
 /**
  * Created by たけのこ on 2017/05/04.
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.open_menu_image) ImageView openMenuImage;
     @BindView(R.id.open_menu_text) TextView openMenuText;
     @BindView(R.id.debug_text) TextView debugText;
+    @BindView(R.id.status_image) ImageView statusImage;
+    @BindView(R.id.status_text) TextView statusText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Log.e(log, "onCreate");
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        Debuger.button(this);
         upDate();
     }
 
@@ -45,7 +49,20 @@ public class MainActivity extends AppCompatActivity {
                 openMenuImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_close));
                 openMenuText.setText("とじる");
                 break;
-
+        }
+        switch (StaticModel.getPenMode()) {
+            case PEN:
+                statusImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_crayon));
+                statusImage.setAlpha(100);
+                statusText.setText("ペン");
+                break;
+            case ERASER:
+                statusImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_blackbord_ere));
+                statusImage.setAlpha(100);
+                statusText.setText("けしごむ");
+                break;
+            default:
+                break;
         }
     }
 }
