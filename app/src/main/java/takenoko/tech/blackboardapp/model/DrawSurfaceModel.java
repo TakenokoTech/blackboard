@@ -1,7 +1,5 @@
 package takenoko.tech.blackboardapp.model;
 
-import android.graphics.BlurMaskFilter;
-import android.graphics.Color;
 import android.graphics.Paint;
 
 import lombok.Getter;
@@ -23,33 +21,26 @@ public class DrawSurfaceModel {
     float penX = 100, penY = 100;
     @Getter @Setter
     float penDx = 8, penDy = 8;
-    @Getter
-    Paint redLine = new Paint();
-    @Getter
-    Paint blueLine = new Paint();
-    @Getter
-    Paint whiteLine = new Paint();
-    @Getter
-    Paint penLine = new Paint();
-    @Getter
-    Paint blurPanLine = new Paint();
+
+    //================================================
+    // PAINT
+    @Getter Paint redLine = new Paint();
+    @Getter Paint blueLine = new Paint();
+    @Getter Paint whiteLine = new Paint();
 
     public DrawSurfaceModel() {
         redLine.setColor(RED);
         blueLine.setColor(BLUE);
         whiteLine.setColor(WHITE);
-        settingPenLine();
     }
 
-    public void settingPenLine() {
-        int strokeWidth = 10;
-        penLine.setColor(Color.argb(200, 240, 240, 240));
-        penLine.setStyle(Paint.Style.STROKE);
-        penLine.setStrokeJoin(Paint.Join.ROUND);
-        penLine.setStrokeCap(Paint.Cap.ROUND);
-        penLine.setStrokeWidth(strokeWidth);
-        blurPanLine.set(penLine);
-        blurPanLine.setStrokeWidth(strokeWidth/2*3);
-        blurPanLine.setMaskFilter(new BlurMaskFilter(strokeWidth*2, BlurMaskFilter.Blur.NORMAL));
+    public void moveSurface() {
+        // 領域チェック
+        if (getPenX() < 0 || getSurfaceX() < getPenX()) setPenDx(-getPenDx());
+        if (getPenY() < 0 || getSurfaceY() < getPenY()) setPenDy(-getPenDy());
+        // 円の座標を移動させる
+        setPenX(getPenX() + getPenDx());
+        setPenY(getPenY() + getPenDy());
     }
+
 }

@@ -70,6 +70,4 @@ public class ListViewAdapter extends BaseAdapter {
         view.setOnClickListener(buttonList.get(i).func);
         return view;
     }
-
-
 }

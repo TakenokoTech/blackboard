@@ -12,6 +12,7 @@ import android.view.SurfaceView;
 
 import takenoko.tech.blackboardapp.model.DrawSurfaceModel;
 import takenoko.tech.blackboardapp.model.SensitiveTouchModel;
+import takenoko.tech.blackboardapp.model.StaticModel;
 import takenoko.tech.blackboardapp.util.EnhCanvas;
 
 /**
@@ -33,26 +34,38 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     // 描画
     private void doDraw() {
-        eCanvas.getCanvas(0).drawColor(0,PorterDuff.Mode.CLEAR);
-        // 円を描画する
-        //eCanvas.getCanvas(0).drawCircle(model.getPenX(), model.getPenY(), 10, model.getRedLine());
-        // 画面の領域を超えた？
-        if (model.getPenX() < 0 || model.getSurfaceX() < model.getPenX()) model.setPenDx(-model.getPenDx());
-        if (model.getPenY() < 0 || model.getSurfaceY() < model.getPenY()) model.setPenDy(-model.getPenDy());
-        // 円の座標を移動させる
-        model.setPenX(model.getPenX() + model.getPenDx());
-        model.setPenY(model.getPenY() + model.getPenDy());
+        // クリア
+        if(StaticModel.getClearMode() == StaticModel.ClearMode.CLEAR) {
+            clear();
+        }
         // ライン描画
-        eCanvas.getCanvas(0).drawPath(eCanvas.getTouchPath(), model.getPenLine());
-        //eCanvas.getCanvas(0).drawPath(eCanvas.getTouchPath(), model.getBlurPanLine());
+        sens.calcLine();
+        switch (StaticModel.getPenMode()) {
+            case PEN:
+                eCanvas.getCanvas(0).drawPath(eCanvas.getTouchPath(), sens.getPenLine());
+//                eCanvas.getCanvas(0).drawPath(eCanvas.getTouchPath(), sens.getBlurPanLine());
+                break;
+            case ERASER:
+                eCanvas.getCanvas(0).drawPath(eCanvas.getTouchPath(), sens.getEraserLine());
+                break;
+        }
     }
-
+    // 不要な表示のマスク
+    private Canvas doMask(Canvas canvas) {
+        canvas.drawRect(sens.getMenuMasKRect(), sens.getEraserRect());
+        canvas.drawRect(sens.getDebugerMasKRect(), sens.getEraserRect());
+        return canvas;
+    }
     // イベント
     private void doTouchEvent() {
 
 
     }
-
+    // クリア
+    public void clear() {
+        eCanvas.getCanvas(0).drawColor(0,PorterDuff.Mode.CLEAR);
+        StaticModel.setClearMode(StaticModel.ClearMode.NONE);
+    }
     // コンストラクタ
     public DrawSurfaceView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -71,7 +84,6 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     @Override
     public void run() {
         while (true) {
-            //Log.i(log, "run");
             Canvas canvas = holder.lockCanvas();
             canvas.drawColor(0,PorterDuff.Mode.CLEAR);
             if(canvas == null) continue;
@@ -79,6 +91,7 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             for(int i = 0; i < eCanvas.getLength(); i++) {
                 canvas.drawBitmap(eCanvas.getBitmap(i), 0, 0, null);
             }
+            canvas = doMask(canvas);
             holder.unlockCanvasAndPost(canvas);
         }
     }
@@ -99,6 +112,7 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
                 break;
             case MotionEvent.ACTION_UP:
                 eCanvas.getTouchPath().lineTo(x, y);
+                eCanvas.getTouchPath().reset();
                 break;
         }
         return true;
@@ -115,6 +129,7 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         model.setSurfaceY(height);
         if (thread != null) thread.start();
         eCanvas.addCanvas(width, height);
+        sens.settingMask(model);
     }
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {

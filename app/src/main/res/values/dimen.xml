@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="menu_list_width">66dp</dimen>
+    <dimen name="debuger_height">202dp</dimen>
 </resources>
