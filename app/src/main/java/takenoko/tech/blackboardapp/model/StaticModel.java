@@ -10,9 +10,9 @@ import lombok.Setter;
 public class StaticModel {
 
     /** メニュー表示状態 */
-    public enum MenuMode{ INVISIBLE, NONE, PEN_SIZE, PEN_COLOR}
+    public enum MenuMode{ INVISIBLE, VISIBLE }
     @Getter @Setter
-    static MenuMode menuMode = MenuMode.NONE;
+    static MenuMode menuMode = MenuMode.VISIBLE;
 
     /** ペンモード */
     public enum PenMode{ PEN, ERASER }
@@ -30,12 +30,12 @@ public class StaticModel {
     static DebugMode debugMode = DebugMode.VIEW;
 
     /** ステータス表示 */
-    public enum ViewStatus{ NONE, VIEW }
+    public enum ViewStatus{ NONE, VIEW, SUB}
     @Getter @Setter
     static ViewStatus viewStatus = ViewStatus.VIEW;
 
     /** ダイアログ表示 */
-    public enum DialogMode{ NONE, SHARE }
+    public enum DialogMode{ NONE, SHARE , CLEAR}
     @Getter @Setter
     static DialogMode dialogMode = DialogMode.NONE;
 }

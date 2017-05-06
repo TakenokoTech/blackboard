@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#be000000">
     <LinearLayout
-        android:layout_width="200dp"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:background="#FCFCFC"
         android:orientation="vertical"
@@ -23,18 +23,20 @@
                 android:layout_height="wrap_content"
                 android:text="Title"
                 android:textSize="20sp"
-                android:paddingBottom="20dp"
                 android:textColor="@color/colorText"/>
             <ImageView
                 android:id="@+id/dialog_image"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:background="#e464ad"/>
-            <!--<TextView-->
-                <!--android:id="@+id/dialog_text"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="#64b5e4"/>-->
+                android:layout_height="150dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_pattern" />
+            <TextView
+                android:id="@+id/dialog_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/colorSubText"
+                android:text="aaaaaaaaaaaaaaaaaa"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,16 +46,6 @@
             android:paddingRight="8dp"
             android:background="#FFF">
             <TextView
-                android:id="@+id/dialog_agree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#FFF"
-                android:text="agree"
-                android:padding="8dp"
-                android:layout_margin="2dp"
-                android:textSize="14sp"
-                android:textColor="@color/accent_material_light" />
-            <TextView
                 android:id="@+id/dialog_disagree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -61,7 +53,17 @@
                 android:text="disagree"
                 android:padding="8dp"
                 android:layout_margin="2dp"
-                android:textSize="14sp"
+                android:textSize="18sp"
+                android:textColor="@color/accent_material_light" />
+            <TextView
+                android:id="@+id/dialog_agree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#FFF"
+                android:text="agree"
+                android:padding="8dp"
+                android:layout_margin="2dp"
+                android:textSize="18sp"
                 android:textColor="@color/accent_material_light" />
         </LinearLayout>
     </LinearLayout>

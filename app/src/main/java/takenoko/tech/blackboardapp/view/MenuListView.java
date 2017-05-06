@@ -32,9 +32,10 @@ public class MenuListView extends ListView {
         model.getAdapter().add("ペン", getResources().getDrawable(R.drawable.ic_crayon), new OnClickToPen());
         model.getAdapter().add("けしごむ", getResources().getDrawable(R.drawable.ic_blackbord_ere), new OnClickToEraser());
         model.getAdapter().add("さくじょ", getResources().getDrawable(R.drawable.ic_garbage_can), new OnClickToClear());
-        model.getAdapter().add("ほぞん", getResources().getDrawable(R.drawable.ic_download), new OnClickToDownload());
+        // model.getAdapter().add("ほぞん", getResources().getDrawable(R.drawable.ic_download), new OnClickToDownload());
         model.getAdapter().add("きょうゆう", getResources().getDrawable(R.drawable.ic_share), new OnClickToShare());
-        model.getAdapter().add("せってい", getResources().getDrawable(R.drawable.ic_setting), new OnClickToSetting());
+//        model.getAdapter().add("とりこみ", getResources().getDrawable(R.drawable.ic_image), new OnClickToShare());
+//        model.getAdapter().add("せってい", getResources().getDrawable(R.drawable.ic_setting), new OnClickToSetting());
         model.getAdapter().add("とじる", getResources().getDrawable(R.drawable.ic_close), new OnClickToClose());
         setAdapter(model.getAdapter());
     }
@@ -55,17 +56,13 @@ public class MenuListView extends ListView {
             ((MainActivity)context).upDate();
         }
     }
-    private class OnClickToPenSize implements View.OnClickListener {
-        @Override
-        public void onClick(View view) {
-            Log.i(log, "OnClickToPenSize");
-        }
-    }
     private class OnClickToClear implements View.OnClickListener {
         @Override
         public void onClick(View view) {
             Log.i(log, "OnClickToClear");
+            StaticModel.setDialogMode(StaticModel.DialogMode.CLEAR);
             StaticModel.setClearMode(StaticModel.ClearMode.CLEAR);
+            ((MainActivity)context).upDate();
         }
     }
     private class OnClickToDownload implements View.OnClickListener {

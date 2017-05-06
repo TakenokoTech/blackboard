@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -12,8 +13,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import takenoko.tech.blackboardapp.model.StaticModel;
 import takenoko.tech.blackboardapp.util.Debuger;
-import takenoko.tech.blackboardapp.util.EnhCanvas;
 import takenoko.tech.blackboardapp.util.Dialog;
+import takenoko.tech.blackboardapp.util.EnhCanvas;
 
 /**
  * Created by たけのこ on 2017/05/04.
@@ -29,8 +30,10 @@ public class MainActivity extends AppCompatActivity {
     //-----------------------------------------------------
     @BindView(R.id.debug_text) TextView debugText;
     //-----------------------------------------------------
+    @BindView(R.id.status_layout) RelativeLayout statusLayout;
     @BindView(R.id.status_image) ImageView statusImage;
     @BindView(R.id.status_text) TextView statusText;
+    @BindView(R.id.status_sub) LinearLayout statusSub;
     //-----------------------------------------------------
     @BindView(R.id.dialog_layout)RelativeLayout dialogLayout;
     @BindView(R.id.dialog_title)TextView dialogTitle;
@@ -50,18 +53,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void upDate() {
-        switch (StaticModel.getMenuMode()) {
-            case INVISIBLE:
-                menuLayout.setVisibility(View.INVISIBLE);
-                openMenuImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu));
-                openMenuText.setText("メニュー");
-                break;
-            default:
-                menuLayout.setVisibility(View.VISIBLE);
-                openMenuImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_close));
-                openMenuText.setText("とじる");
-                break;
-        }
         switch (StaticModel.getPenMode()) {
             case PEN:
                 statusImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_crayon));
@@ -79,11 +70,46 @@ public class MainActivity extends AppCompatActivity {
         switch (StaticModel.getDialogMode()) {
             case SHARE:
                 dialogLayout.setVisibility(View.VISIBLE);
+                dialogImage.setVisibility(View.VISIBLE);
                 dialogTitle.setText("シェア");
-                dialogImage.setImageBitmap(EnhCanvas.getBitmap(0));
+                dialogImage.setImageBitmap(EnhCanvas.printBitmap());
+                dialogImage.setMaxHeight((int) getResources().getDimension(R.dimen.dialog_image_height));
+                break;
+            case CLEAR:
+                dialogLayout.setVisibility(View.VISIBLE);
+                dialogImage.setVisibility(View.GONE);
+                dialogTitle.setText("さくじょ");
                 break;
             default:
                 dialogLayout.setVisibility(View.INVISIBLE);
+                dialogImage.setVisibility(View.GONE);
+                break;
+        }
+        switch (StaticModel.getViewStatus()) {
+            case VIEW:
+                statusLayout.setVisibility(View.VISIBLE);
+                statusSub.setVisibility(View.INVISIBLE);
+                break;
+            case SUB:
+                statusLayout.setVisibility(View.VISIBLE);
+                statusSub.setVisibility(View.VISIBLE);
+                break;
+            default:
+                statusSub.setVisibility(View.INVISIBLE);
+                break;
+        }
+        switch (StaticModel.getMenuMode()) {
+            case INVISIBLE:
+                statusLayout.setVisibility(View.INVISIBLE);
+                statusSub.setVisibility(View.INVISIBLE);
+                menuLayout.setVisibility(View.INVISIBLE);
+                openMenuImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu));
+                openMenuText.setText("メニュー");
+                break;
+            default:
+                menuLayout.setVisibility(View.VISIBLE);
+                openMenuImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_close));
+                openMenuText.setText("とじる");
                 break;
         }
     }

@@ -36,6 +36,7 @@ public class Dialog {
                 Log.i(log, "OnClickToAgree");
                 switch(StaticModel.getDialogMode()) {
                     case SHARE: clickToShare(ClickAction.AGREE, (Activity)context); break;
+                    case CLEAR: clickToClear(ClickAction.AGREE, (Activity)context); break;
                 }
                 ((MainActivity)context).upDate();
             }
@@ -47,6 +48,7 @@ public class Dialog {
                 Log.i(log, "OnClickToDisagree");
                 switch(StaticModel.getDialogMode()) {
                     case SHARE: clickToShare(ClickAction.DISAGREE, (Activity)context); break;
+                    case CLEAR: clickToClear(ClickAction.DISAGREE, (Activity)context); break;
                 }
                 ((MainActivity)context).upDate();
             }
@@ -60,18 +62,23 @@ public class Dialog {
                 File downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
                 File imageFile = new File(downloadDir.getPath() + "/cache.jpg");
                 FileOutputStream out = new FileOutputStream(imageFile);
-                boolean res = EnhCanvas.getBitmap(0).compress(Bitmap.CompressFormat.JPEG, 100, out);
+                boolean res = EnhCanvas.printBitmap().compress(Bitmap.CompressFormat.PNG, 100, out);
+                // boolean res = EnhCanvas.getBitmap(0).compress(Bitmap.CompressFormat.PNG, 100, out);
                 Debuger.print((Context) activity, Uri.fromFile(imageFile).getPath() + "::" + res);
                 ShareCompat.IntentBuilder builder = ShareCompat.IntentBuilder.from(activity);
                 builder.setChooserTitle("setChooserTitle")
                         .setSubject("setSubject")
                         .setText("setText")
                         .setStream(Uri.fromFile(imageFile))
-                        .setType("image/jpeg")
+                        .setType("image/png")
                         .startChooser();
             } catch (IOException e) {
             }
         }
+        StaticModel.setDialogMode(StaticModel.DialogMode.NONE);
+    }
+    private static void clickToClear(ClickAction action, Activity activity) {
+        if(action == ClickAction.AGREE) {}
         StaticModel.setDialogMode(StaticModel.DialogMode.NONE);
     }
 }

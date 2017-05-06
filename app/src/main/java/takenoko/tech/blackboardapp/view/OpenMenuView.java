@@ -28,7 +28,7 @@ public class OpenMenuView extends RelativeLayout {
             if(StaticModel.getMenuMode() != StaticModel.MenuMode.INVISIBLE) {
                 StaticModel.setMenuMode(StaticModel.MenuMode.INVISIBLE);
             } else {
-                StaticModel.setMenuMode(StaticModel.MenuMode.PEN_COLOR);
+                StaticModel.setMenuMode(StaticModel.MenuMode.VISIBLE);
             }
             activity.upDate();
         }

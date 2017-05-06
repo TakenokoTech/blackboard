@@ -10,8 +10,10 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 import lombok.Getter;
+import lombok.Setter;
 import takenoko.tech.blackboardapp.R;
 
 /**
@@ -29,21 +31,27 @@ public class SensitiveTouchModel implements Serializable {
     @Getter static Paint eraserRect = new Paint();
 
     Point prevPoint = null;
-    @Getter static int strokeWidth = 10;
-    int strokeColor = Color.argb(200, 240, 240, 240);
+    @Getter @Setter
+    static int strokeWidth = 10;
+    @Getter @Setter
+    static int strokeColor = Color.argb(200, 240, 240, 240);
+    @Getter
+    static HashMap<String, Integer> colorMap = new HashMap<>();
 
     // maskRect
     @Getter RectF menuMaskRect;
     @Getter RectF debugerMaskRect;
     @Getter RectF statusMaskRect;
+    @Getter RectF subStatusMaskRect;
     @Getter RectF dialogMaskRect;
 
     public SensitiveTouchModel(Context context) {
         this.context = context;
         settingPenLine();
+        settingColor();
     }
 
-    public void settingPenLine() {
+    public static void settingPenLine() {
         penLine.setColor(strokeColor);
         penLine.setStyle(Paint.Style.STROKE);
         penLine.setStrokeJoin(Paint.Join.ROUND);
@@ -60,6 +68,15 @@ public class SensitiveTouchModel implements Serializable {
         eraserRect.setStyle(Paint.Style.FILL);
     }
 
+    public void settingColor() {
+        colorMap.put("WHITE",   Color.argb(200, 240, 240, 240));
+        colorMap.put("PINK",    Color.argb(200, 247, 171, 173));
+        colorMap.put("YELLOW",  Color.argb(200, 255, 255, 146));
+        colorMap.put("BLUE",    Color.argb(200, 126, 203, 220));
+        colorMap.put("GREEN",   Color.argb(200,   0, 255, 126));
+        colorMap.put("ORANGE",  Color.argb(200, 255, 126,   0));
+    }
+
     public void settingMask(DrawSurfaceModel model) {
         menuMaskRect = new RectF(
                 0,
@@ -74,10 +91,16 @@ public class SensitiveTouchModel implements Serializable {
                 model.getSurfaceY()
         );
         statusMaskRect = new RectF(
-                model.getSurfaceX(),
-                0,
-                model.getSurfaceX() - context.getResources().getDimension(R.dimen.status_height),
-                context.getResources().getDimension(R.dimen.status_height)
+                model.getSurfaceX() - context.getResources().getDimension(R.dimen.status_margin),
+                context.getResources().getDimension(R.dimen.status_margin),
+                model.getSurfaceX() - context.getResources().getDimension(R.dimen.status_height) - context.getResources().getDimension(R.dimen.status_margin),
+                context.getResources().getDimension(R.dimen.status_height) + context.getResources().getDimension(R.dimen.status_margin)
+        );
+        subStatusMaskRect = new RectF(
+                model.getSurfaceX() - context.getResources().getDimension(R.dimen.status_margin),
+                context.getResources().getDimension(R.dimen.status_margin),
+                model.getSurfaceX() - context.getResources().getDimension(R.dimen.status_height) - context.getResources().getDimension(R.dimen.status_margin),
+                model.getSurfaceY()
         );
         dialogMaskRect = new RectF(
                 0,

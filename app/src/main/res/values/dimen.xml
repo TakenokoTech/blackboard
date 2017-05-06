@@ -2,5 +2,7 @@
 <resources>
     <dimen name="menu_list_width">64dp</dimen>
     <dimen name="debug_height">64dp</dimen>
-    <dimen name="status_height">120dp</dimen>
+    <dimen name="status_margin">4dp</dimen>
+    <dimen name="status_height">96dp</dimen>
+    <dimen name="dialog_image_height">96dp</dimen>
 </resources>

@@ -2,6 +2,7 @@ package takenoko.tech.blackboardapp.util;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 
 import lombok.Getter;
 import lombok.Setter;
+import takenoko.tech.blackboardapp.model.SettingModel;
 
 /**
  * Created by たけのこ on 2017/04/30.
@@ -41,5 +43,15 @@ public class EnhCanvas {
 
     public int getLength() {
         return bitmaps.size();
+    }
+
+    public static Bitmap printBitmap() {
+        Paint paint = new Paint();
+        paint.setColor(SettingModel.getBackColorARGB());
+        Bitmap bitmap = Bitmap.createBitmap(bitmaps.get(0).getWidth(), bitmaps.get(0).getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        canvas.drawRect(0, 0, bitmap.getWidth(), bitmap.getHeight(), paint);
+        canvas.drawBitmap(EnhCanvas.getBitmap(0), 0, 0, null);
+        return bitmap;
     }
 }
