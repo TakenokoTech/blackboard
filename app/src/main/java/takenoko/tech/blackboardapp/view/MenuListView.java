@@ -84,6 +84,8 @@ public class MenuListView extends ListView {
         public void onClick(View view) {
             Log.i(log, "OnClickToImport");
             Debuger.print(context, "OnClickToImport");
+            StaticModel.setIoDialogMode(StaticModel.IoDialogMode.IMPORT);
+            ((MainActivity)context).upDate();
         }
     }
     private class OnClickToSetting implements View.OnClickListener {

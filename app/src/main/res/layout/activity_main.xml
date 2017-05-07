@@ -56,6 +56,7 @@
     </takenoko.tech.blackboardapp.view.OpenMenuView>
     <include layout="@layout/layout_status" />
     <include layout="@layout/layout_setting" />
+    <include layout="@layout/layout_import" />
     <include layout="@layout/layout_dialog" />
     <include layout="@layout/layout_overlay" />
 

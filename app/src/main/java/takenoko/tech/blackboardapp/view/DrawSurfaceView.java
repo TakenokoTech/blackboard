@@ -57,7 +57,7 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         if(StaticModel.getMenuMode() != StaticModel.MenuMode.INVISIBLE) {
             canvas.drawRect(sens.getMenuMaskRect(), sens.getEraserRect());
         }
-        if(StaticModel.getDebugMode() == StaticModel.DebugMode.VIEW) {
+        if(StaticModel.getMenuMode() != StaticModel.MenuMode.INVISIBLE) {
             canvas.drawRect(sens.getDebugerMaskRect(), sens.getEraserRect());
         }
         if(StaticModel.getMenuMode() == StaticModel.MenuMode.VISIBLE &&
@@ -67,6 +67,9 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         if(StaticModel.getMenuMode() == StaticModel.MenuMode.VISIBLE &&
                 StaticModel.getViewStatus() == StaticModel.ViewStatus.SUB) {
             canvas.drawRect(sens.getSubStatusMaskRect(), sens.getEraserRect());
+        }
+        if(StaticModel.getIoDialogMode() != StaticModel.IoDialogMode.NONE) {
+            canvas.drawRect(sens.getFullMaskRect(), sens.getEraserRect());
         }
         if(StaticModel.getDialogMode() != StaticModel.DialogMode.NONE) {
             canvas.drawRect(sens.getFullMaskRect(), sens.getEraserRect());

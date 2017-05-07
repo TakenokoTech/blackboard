@@ -30,6 +30,9 @@ public class Dialog {
     public static void button(final Context context) {
         TextView agreeButton = (TextView) ((MainActivity)context).findViewById(R.id.dialog_agree);
         TextView disagreeButton = (TextView) ((MainActivity)context).findViewById(R.id.dialog_disagree);
+        TextView importAgreeButton = (TextView) ((MainActivity)context).findViewById(R.id.import_agree);
+        TextView importDisagreeButton = (TextView) ((MainActivity)context).findViewById(R.id.import_disagree);
+
 
         agreeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +54,23 @@ public class Dialog {
                     case SHARE: clickToShare(ClickAction.DISAGREE, (Activity)context); break;
                     case CLEAR: clickToClear(ClickAction.DISAGREE, (Activity)context); break;
                 }
+                ((MainActivity)context).upDate();
+            }
+        });
+
+        importAgreeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(log, "OnClickToImportAgree");
+                clickToImport(ClickAction.AGREE, (Activity)context);
+                ((MainActivity)context).upDate();
+            }
+        });
+        importDisagreeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(log, "OnClickToImportDisagree");
+                clickToImport(ClickAction.DISAGREE, (Activity)context);
                 ((MainActivity)context).upDate();
             }
         });
@@ -83,5 +103,9 @@ public class Dialog {
             StaticModel.setClearMode(StaticModel.ClearMode.CLEAR);
         }
         StaticModel.setDialogMode(StaticModel.DialogMode.NONE);
+    }
+    private static void clickToImport(ClickAction action, Activity activity) {
+        if(action == ClickAction.AGREE) {}
+        StaticModel.setIoDialogMode(StaticModel.IoDialogMode.NONE);
     }
 }

@@ -3,6 +3,8 @@ package takenoko.tech.blackboardapp.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import static takenoko.tech.blackboardapp.model.StaticModel.DebugMode.FALSE;
+
 /**
  * Created by たけのこ on 2017/05/04.
  */
@@ -25,14 +27,19 @@ public class StaticModel {
     static ClearMode clearMode = ClearMode.NONE;
 
     /** デバックモード */
-    public enum DebugMode{ NONE, VIEW }
+    public enum DebugMode{ TRUE, FALSE }
     @Getter @Setter
-    static DebugMode debugMode = DebugMode.VIEW;
+    static DebugMode debugMode = FALSE;
 
     /** ステータス表示 */
     public enum ViewStatus{ NONE, VIEW, SUB}
     @Getter @Setter
     static ViewStatus viewStatus = ViewStatus.VIEW;
+
+    /** 入出力ダイアログ表示 */
+    public enum IoDialogMode{ NONE, IMPORT, EXPORT }
+    @Getter @Setter
+    static IoDialogMode ioDialogMode = IoDialogMode.NONE;
 
     /** ダイアログ表示 */
     public enum DialogMode{ NONE, SHARE , CLEAR}

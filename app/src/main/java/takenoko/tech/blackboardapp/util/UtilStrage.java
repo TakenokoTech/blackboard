@@ -1,6 +1,7 @@
 package takenoko.tech.blackboardapp.util;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import java.io.ObjectInputStream;
@@ -52,6 +53,21 @@ public class UtilStrage {
         } catch (Exception e) {
             Log.d(log, "bad load");
             return false;
+        }
+    }
+
+    public static Bitmap get(Context context, String fileName) {
+        if(fileName == null) fileName = FILE_NAME;
+        try {
+            ObjectInputStream in = new ObjectInputStream(context.openFileInput(fileName));
+            StorageModel storageModel = (StorageModel) in.readObject();
+            in.close();
+            if(storageModel == null || storageModel.getBitmaps() == null || storageModel.getBitmaps().size() < 1) return null;
+            Log.d(log, "load  " + storageModel.getMBitmapArray().size());
+            return storageModel.getBitmaps().get(0);
+        } catch (Exception e) {
+            Log.d(log, "bad load");
+            return null;
         }
     }
 }

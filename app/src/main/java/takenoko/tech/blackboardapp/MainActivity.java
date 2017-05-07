@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.status_text) TextView statusText;
     @BindView(R.id.status_sub) LinearLayout statusSub;
     //-----------------------------------------------------
+    @BindView(R.id.import_layout) RelativeLayout importLayout;
+    //-----------------------------------------------------
     @BindView(R.id.dialog_layout)RelativeLayout dialogLayout;
     @BindView(R.id.dialog_title)TextView dialogTitle;
     @BindView(R.id.dialog_image)ImageView dialogImage;
@@ -94,6 +96,17 @@ public class MainActivity extends AppCompatActivity {
                 statusText.setText(getResources().getString(R.string.menu_eraser));
                 break;
             default:
+                break;
+        }
+        switch (StaticModel.getIoDialogMode()) {
+            case IMPORT:
+                importLayout.setVisibility(View.VISIBLE);
+                break;
+            case EXPORT:
+                importLayout.setVisibility(View.VISIBLE);
+                break;
+            default:
+                importLayout.setVisibility(View.INVISIBLE);
                 break;
         }
         switch (StaticModel.getDialogMode()) {
