@@ -15,7 +15,7 @@ import takenoko.tech.blackboardapp.MainActivity;
 import takenoko.tech.blackboardapp.model.DrawSurfaceModel;
 import takenoko.tech.blackboardapp.model.SensitiveTouchModel;
 import takenoko.tech.blackboardapp.model.StaticModel;
-import takenoko.tech.blackboardapp.util.EnhCanvas;
+import takenoko.tech.blackboardapp.model.EnhCanvasModel;
 
 /**
  * Created by たけのこ on 2017/04/29.
@@ -28,7 +28,7 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     // モデル
     private DrawSurfaceModel model = new DrawSurfaceModel();
     private SensitiveTouchModel sens;
-    private static EnhCanvas eCanvas = new EnhCanvas();
+    private static EnhCanvasModel eCanvas = new EnhCanvasModel();
 
     // スレッドクラス
     private SurfaceHolder holder;
@@ -104,9 +104,10 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     @Override
     public void run() {
         while (true) {
+            if(holder == null) continue;
             Canvas canvas = holder.lockCanvas();
-            canvas.drawColor(0,PorterDuff.Mode.CLEAR);
             if(canvas == null) continue;
+            canvas.drawColor(0,PorterDuff.Mode.CLEAR);
             doDraw();
             for(int i = 0; i < eCanvas.getLength(); i++) {
                 canvas.drawBitmap(eCanvas.getBitmap(i), 0, 0, null);
@@ -117,7 +118,6 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.i(log, event.getX() + "," + event.getY());
         float x = event.getX();
         float y = event.getY();
         if(StaticModel.getDialogMode() != StaticModel.DialogMode.NONE) return true;

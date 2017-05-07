@@ -3,7 +3,6 @@ package takenoko.tech.blackboardapp.view;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +55,6 @@ public class StatusSizeList extends ListView {
             holder.imageView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.i(log, "size: " + sizeArray[i]);
                     SensitiveTouchModel.setStrokeWidth(sizeArray[i]);
                     SensitiveTouchModel.settingPenLine();
                     notifyDataSetChanged();

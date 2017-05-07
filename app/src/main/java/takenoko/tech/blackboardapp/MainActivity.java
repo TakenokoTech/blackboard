@@ -14,8 +14,9 @@ import butterknife.ButterKnife;
 import takenoko.tech.blackboardapp.model.StaticModel;
 import takenoko.tech.blackboardapp.util.Debuger;
 import takenoko.tech.blackboardapp.util.Dialog;
-import takenoko.tech.blackboardapp.util.EnhCanvas;
+import takenoko.tech.blackboardapp.model.EnhCanvasModel;
 import takenoko.tech.blackboardapp.util.Setting;
+import takenoko.tech.blackboardapp.util.UtilStrage;
 
 /**
  * Created by たけのこ on 2017/05/04.
@@ -60,6 +61,20 @@ public class MainActivity extends AppCompatActivity {
         upDate();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(log, "onResume  " + EnhCanvasModel.getBitmaps().size());
+        UtilStrage.load(this, null);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(log, "onDestroy  " + EnhCanvasModel.getBitmaps().size());
+        UtilStrage.store(this, null);
+    }
+
     public void upDate() {
         switch (StaticModel.getPenMode()) {
             case PEN:
@@ -83,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 dialogText.setText(getResources().getString(R.string.dialog_share_text));
                 dialogAgreeButton.setText(getResources().getString(R.string.dialog_share_agree));
                 dialogDisagreeButton.setText(getResources().getString(R.string.dialog_share_disagree));
-                dialogImage.setImageBitmap(EnhCanvas.printBitmap());
+                dialogImage.setImageBitmap(EnhCanvasModel.printBitmap());
                 dialogImage.setMaxHeight((int) getResources().getDimension(R.dimen.dialog_image_height));
                 break;
             case CLEAR:

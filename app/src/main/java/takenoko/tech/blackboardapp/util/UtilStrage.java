@@ -1,10 +1,13 @@
 package takenoko.tech.blackboardapp.util;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
+
+import takenoko.tech.blackboardapp.model.EnhCanvasModel;
+import takenoko.tech.blackboardapp.model.StorageModel;
 
 /**
  * Created by たけのこ on 2017/05/06.
@@ -12,29 +15,43 @@ import java.io.Serializable;
 
 public class UtilStrage {
 
-    /** 保存するファイル名 */
-    private final static String FILE_NAME = "StoreDto.obj";
-    // File imageFile = new File(activity.getFilesDir().getAbsolutePath()+"/cache.jpg");
+    final static String log = "----UtilStrage----";
 
-    public static void store(Context context, Serializable object) {
+    /** ファイル名 */
+    private final static String FILE_NAME = "storageModel.obj";
+
+    /** 保存 */
+    public static boolean store(Context context, String fileName) {
+        if(fileName == null) fileName = FILE_NAME;
+        StorageModel storageModel = new StorageModel(EnhCanvasModel.getBitmaps(), EnhCanvasModel.getCanvases());
         try {
-            ObjectOutputStream out = new ObjectOutputStream(context.openFileOutput(FILE_NAME, Context.MODE_PRIVATE));
-            out.writeObject(object);
+            ObjectOutputStream out = new ObjectOutputStream(context.openFileOutput(fileName, Context.MODE_PRIVATE));
+            out.writeObject(storageModel);
             out.close();
+            Log.d(log, "store  " + storageModel.getMBitmapArray().size());
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            Log.d(log, "bad store");
+            return false;
         }
     }
 
-    public static Object load(Context context) {
-        Object retObj = null;
+    /** 読み込み */
+    public static boolean load(Context context, String fileName) {
+        if(fileName == null) fileName = FILE_NAME;
+        StorageModel storageModel = null;
         try {
-            ObjectInputStream in = new ObjectInputStream(context.openFileInput(FILE_NAME));
-            retObj = in.readObject();
+            ObjectInputStream in = new ObjectInputStream(context.openFileInput(fileName));
+            storageModel = (StorageModel) in.readObject();
             in.close();
+            if(storageModel == null || storageModel.getBitmaps() == null || storageModel.getBitmaps().size() < 1) return false;
+            EnhCanvasModel.loadCanvas(storageModel.getBitmaps());
+            Log.d(log, "load  " + storageModel.getMBitmapArray().size());
+            return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.d(log, "bad load");
+            return false;
         }
-        return retObj;
     }
 }

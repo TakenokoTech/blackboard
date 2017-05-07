@@ -16,6 +16,7 @@ import java.io.IOException;
 
 import takenoko.tech.blackboardapp.MainActivity;
 import takenoko.tech.blackboardapp.R;
+import takenoko.tech.blackboardapp.model.EnhCanvasModel;
 import takenoko.tech.blackboardapp.model.StaticModel;
 
 /**
@@ -62,7 +63,7 @@ public class Dialog {
                 File downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
                 File imageFile = new File(downloadDir.getPath() + "/cache.jpg");
                 FileOutputStream out = new FileOutputStream(imageFile);
-                boolean res = EnhCanvas.printBitmap().compress(Bitmap.CompressFormat.PNG, 100, out);
+                boolean res = EnhCanvasModel.printBitmap().compress(Bitmap.CompressFormat.PNG, 100, out);
                 // boolean res = EnhCanvas.getBitmap(0).compress(Bitmap.CompressFormat.PNG, 100, out);
                 Debuger.print((Context) activity, Uri.fromFile(imageFile).getPath() + "::" + res);
                 ShareCompat.IntentBuilder builder = ShareCompat.IntentBuilder.from(activity);

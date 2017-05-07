@@ -36,7 +36,6 @@ public class MenuListView extends ListView {
         model.getAdapter().add(getResources().getString(R.string.menu_share), getResources().getDrawable(R.drawable.ic_share), new OnClickToShare());
         // model.getAdapter().add(getResources().getString(R.string.menu_import), getResources().getDrawable(R.drawable.ic_image), new OnClickToImport());
         model.getAdapter().add(getResources().getString(R.string.menu_setting), getResources().getDrawable(R.drawable.ic_setting), new OnClickToSetting());
-        model.getAdapter().add(getResources().getString(R.string.menu_close_button), getResources().getDrawable(R.drawable.ic_close), new OnClickToClose());
         setAdapter(model.getAdapter());
     }
 
@@ -94,12 +93,6 @@ public class MenuListView extends ListView {
             Debuger.print(context, "OnClickToSetting");
             StaticModel.setSettingMode(StaticModel.SettingMode.VIEW);
             ((MainActivity)context).upDate();
-        }
-    }
-    private class OnClickToClose implements View.OnClickListener {
-        @Override
-        public void onClick(View view) {
-            Log.i(log, "OnClickToPenSize");
         }
     }
 }
