@@ -16,8 +16,13 @@
     <!-- 読み込みダイアログ -->
     <string name="import_title">読み込み</string>
     <string name="import_text">読み込む画像を選択してください。</string>
+    <string name="import_agree">決定</string>
+    <string name="import_disagree">キャンセル</string>
+    <!-- 保存ダイアログ -->
     <string name="export_title">保存</string>
     <string name="export_text">上書きする画像を選択してください。\n※以前の画像は元に戻せません</string>
+    <string name="export_agree">決定</string>
+    <string name="export_disagree">キャンセル</string>
     <!-- 全消去ダイアログ -->
     <string name="dialog_clear_title">さくじょ</string>
     <string name="dialog_clear_text">描いた画像を消去してもよろしいですか？\n※消去した画像は戻せません。</string>

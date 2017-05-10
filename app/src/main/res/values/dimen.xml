@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- メニュー -->
     <dimen name="menu_list_width">64dp</dimen>
+    <!-- デバック -->
     <dimen name="debug_height">64dp</dimen>
+    <!-- ステータス表示 -->
     <dimen name="status_margin">4dp</dimen>
     <dimen name="status_height">96dp</dimen>
+    <!-- ダイアログ -->
     <dimen name="dialog_image_height">96dp</dimen>
+    <dimen name="dialog_height">300dp</dimen>
+    <dimen name="dialog_width">330dp</dimen>
 </resources>

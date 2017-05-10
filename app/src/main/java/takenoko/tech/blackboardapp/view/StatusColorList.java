@@ -59,6 +59,7 @@ public class StatusColorList extends ListView {
             });
             if(color == SensitiveTouchModel.getPenLine().getColor()) {
                 holder.textView.setBackgroundColor(Color.argb(128, 255, 0, 0));
+                holder.textView.setBackgroundColor(color);
             } else {
                 holder.textView.setBackgroundColor(Color.argb(51, 0, 0, 0));
             }
