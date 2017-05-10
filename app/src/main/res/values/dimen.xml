@@ -10,5 +10,5 @@
     <!-- ダイアログ -->
     <dimen name="dialog_image_height">96dp</dimen>
     <dimen name="dialog_height">300dp</dimen>
-    <dimen name="dialog_width">330dp</dimen>
+    <dimen name="dialog_width">300dp</dimen>
 </resources>

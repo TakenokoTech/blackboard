@@ -5,12 +5,15 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
+import android.graphics.RadialGradient;
 import android.util.Log;
 
 import java.util.ArrayList;
 
 import lombok.Getter;
 import lombok.Setter;
+
+import static android.graphics.Color.rgb;
 
 /**
  * Created by たけのこ on 2017/04/30.
@@ -66,6 +69,29 @@ public class EnhCanvasModel {
         Canvas canvas = new Canvas(bitmap);
         canvas.drawRect(0, 0, bitmap.getWidth(), bitmap.getHeight(), paint);
         canvas.drawBitmap(EnhCanvasModel.getBitmap(0), 0, 0, null);
+        if(SettingModel.getFlameBool() == SettingModel.FlameBool.ON) addFlame(bitmap, canvas);
         return bitmap;
+    }
+
+    /** フレーム */
+    private static void addFlame(Bitmap bitmap, Canvas canvas) {
+        float f = (int) bitmap.getHeight() / 25;
+        float w = bitmap.getWidth();
+        float h = bitmap.getHeight();
+        Paint flamePaint = new Paint();
+        flamePaint.setColor(rgb(155, 100, 5));
+        flamePaint.setDither(true);
+        flamePaint.setShader(new RadialGradient(
+                w/2,
+                h/2,
+                w,
+                SettingModel.getFlame1HashMap().get(SettingModel.getBackColor()),
+                SettingModel.getFlame2HashMap().get(SettingModel.getBackColor()),
+                android.graphics.Shader.TileMode.CLAMP)
+        );
+        canvas.drawRect(0, 0, f, h, flamePaint);
+        canvas.drawRect(0, 0, w, f, flamePaint);
+        canvas.drawRect(w-f,   0, w, h, flamePaint);
+        canvas.drawRect(  0, h-f, w, h, flamePaint);
     }
 }

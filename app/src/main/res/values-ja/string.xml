@@ -36,5 +36,6 @@
     <!-- 設定ダイアログ -->
     <string name="dialog_setting_title">せってい</string>
     <string name="dialog_setting_background">保存時の背景色</string>
+    <string name="dialog_setting_flame">保存時の枠</string>
     <string name="dialog_setting_close">とじる</string>
 </resources>

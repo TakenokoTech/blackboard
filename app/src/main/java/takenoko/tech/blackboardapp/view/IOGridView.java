@@ -49,10 +49,10 @@ public class IOGridView extends GridView {
         list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_04)));
         list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_05)));
         list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_06)));
-        list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_07)));
-        list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_08)));
-        list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_09)));
-        list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_10)));
+        //list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_07)));
+        //list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_08)));
+        //list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_09)));
+        //list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_10)));
         if(adapter != null) adapter.notifyDataSetChanged();
     }
 
@@ -67,6 +67,7 @@ public class IOGridView extends GridView {
             case 6: return context.getResources().getString(R.string.io_file_07);
             case 7: return context.getResources().getString(R.string.io_file_08);
             case 8: return context.getResources().getString(R.string.io_file_09);
+            case 9: return context.getResources().getString(R.string.io_file_10);
             default: return null;
         }
     }

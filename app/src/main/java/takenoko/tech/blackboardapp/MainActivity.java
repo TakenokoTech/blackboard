@@ -1,5 +1,6 @@
 package takenoko.tech.blackboardapp;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -12,11 +13,15 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import takenoko.tech.blackboardapp.model.EnhCanvasModel;
+import takenoko.tech.blackboardapp.model.SettingModel;
 import takenoko.tech.blackboardapp.model.StaticModel;
 import takenoko.tech.blackboardapp.util.Dialog;
 import takenoko.tech.blackboardapp.util.Setting;
 import takenoko.tech.blackboardapp.util.UtilStrage;
 import takenoko.tech.blackboardapp.view.IOGridView;
+
+import static takenoko.tech.blackboardapp.model.SettingModel.FlameBool.OFF;
+import static takenoko.tech.blackboardapp.model.SettingModel.FlameBool.ON;
 
 /**
  * Created by たけのこ on 2017/05/04.
@@ -60,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.setting_layout) RelativeLayout settingLayout;
     @BindView(R.id.setting_title)TextView settingTitle;
     @BindView(R.id.setting_background)TextView settingBackground;
+    @BindView(R.id.setting_flame_on)TextView settingFlameOn;
+    @BindView(R.id.setting_flame_off)TextView settingFlameOff;
     @BindView(R.id.setting_close)TextView settingClose;
 
     @Override
@@ -180,6 +187,15 @@ public class MainActivity extends AppCompatActivity {
         switch (StaticModel.getSettingMode()) {
             case VIEW:
                 settingLayout.setVisibility(View.VISIBLE);
+                settingFlameOff.setBackgroundColor(Color.argb(128, 216, 216, 216));
+                settingFlameOn.setBackgroundColor(Color.argb(128, 216, 216, 216));
+                settingFlameOff.setOnClickListener(new View.OnClickListener() {@Override public void onClick(View view) { SettingModel.setFlameBool(OFF); upDate();}});
+                settingFlameOn.setOnClickListener(new View.OnClickListener() {@Override public void onClick(View view) { SettingModel.setFlameBool(ON); upDate();}});
+                if(SettingModel.getFlameBool() == OFF) {
+                    settingFlameOff.setBackgroundColor(Color.argb(216, 128, 128, 128));
+                } else {
+                    settingFlameOn.setBackgroundColor(Color.argb(216, 192, 0, 0));
+                }
                 break;
             case NONE:
                 settingLayout.setVisibility(View.INVISIBLE);

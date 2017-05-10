@@ -54,6 +54,34 @@
                         android:scrollbars="none" >
                     </takenoko.tech.blackboardapp.view.SettingColorList>
                 </HorizontalScrollView>
+                <TextView
+                    android:id="@+id/setting_flame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorText"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="14dp"
+                    android:text="@string/dialog_setting_flame"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/setting_flame_on"
+                        android:layout_width="64dp"
+                        android:layout_height="36dp"
+                        android:textColor="#FFF"
+                        android:background="#00C"
+                        android:layout_margin="1dp"
+                        android:text="ON"/>
+                    <Button
+                        android:id="@+id/setting_flame_off"
+                        android:layout_width="64dp"
+                        android:layout_height="36dp"
+                        android:textColor="#FFF"
+                        android:background="#CCC"
+                        android:layout_margin="1dp"
+                        android:text="OFF"/>
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
         <LinearLayout

@@ -36,5 +36,6 @@
     <!-- 設定ダイアログ -->
     <string name="dialog_setting_title">Setting</string>
     <string name="dialog_setting_background">Background</string>
+    <string name="dialog_setting_flame">Flame</string>
     <string name="dialog_setting_close">close</string>
 </resources>
