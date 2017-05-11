@@ -46,13 +46,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="72dp"
                     android:layout_weight="1">
-                    <takenoko.tech.blackboardapp.view.SettingColorList
+                    <tech.takenoko.blackboardapp.view.SettingColorList
                         android:id="@+id/setting_color_list"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
                         android:scrollbars="none" >
-                    </takenoko.tech.blackboardapp.view.SettingColorList>
+                    </tech.takenoko.blackboardapp.view.SettingColorList>
                 </HorizontalScrollView>
                 <TextView
                     android:id="@+id/setting_flame"

@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_margin="4dp">
-    <takenoko.tech.blackboardapp.view.StatusView
+    <tech.takenoko.blackboardapp.view.StatusView
         android:id="@+id/status_layout"
         android:orientation="vertical"
         android:layout_width="96dp"
@@ -46,12 +46,12 @@
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="16dp" />
-            <takenoko.tech.blackboardapp.util.PenCanvas
+            <tech.takenoko.blackboardapp.util.PenCanvas
                 android:id="@+id/status_view"
                 android:layout_width="match_parent"
                 android:layout_height="24dp"/>
         </LinearLayout>
-    </takenoko.tech.blackboardapp.view.StatusView>
+    </tech.takenoko.blackboardapp.view.StatusView>
     <LinearLayout
         android:id="@+id/status_sub"
         android:orientation="horizontal"
@@ -62,12 +62,12 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="108dp"
         android:layout_marginBottom="72dp">
-        <takenoko.tech.blackboardapp.view.StatusSizeList
+        <tech.takenoko.blackboardapp.view.StatusSizeList
             android:id="@+id/status_color"
             android:layout_width="40dp"
             android:layout_height="match_parent"
             android:scrollbars="none"/>
-        <takenoko.tech.blackboardapp.view.StatusColorList
+        <tech.takenoko.blackboardapp.view.StatusColorList
             android:id="@+id/status_size"
             android:layout_width="40dp"
             android:layout_height="match_parent"

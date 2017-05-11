@@ -6,7 +6,7 @@
     android:layout_width="40dp"
     android:layout_height="40dp"
     android:padding="2dp">
-    <takenoko.tech.blackboardapp.util.PenCanvas
+    <tech.takenoko.blackboardapp.util.PenCanvas
         android:id="@+id/list_status_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="takenoko.tech.blackboardapp.MainActivity">
+    tools:context="tech.takenoko.blackboardapp.MainActivity">
 
-    <takenoko.tech.blackboardapp.view.BackgroundView
+    <tech.takenoko.blackboardapp.view.BackgroundView
         android:id="@+id/background_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-    <takenoko.tech.blackboardapp.view.DrawSurfaceView
+    <tech.takenoko.blackboardapp.view.DrawSurfaceView
         android:id="@+id/surface_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -21,13 +21,13 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="64dp"
         android:layout_alignParentLeft="true">
-        <takenoko.tech.blackboardapp.view.MenuListView
+        <tech.takenoko.blackboardapp.view.MenuListView
             android:layout_width="64dp"
             android:layout_height="match_parent"
             android:scrollbars="none"
             android:background="#99ff5e00"/>
     </RelativeLayout>
-    <takenoko.tech.blackboardapp.view.OpenMenuView
+    <tech.takenoko.blackboardapp.view.OpenMenuView
         android:id="@+id/open_menu_layout"
         android:layout_width="64dp"
         android:layout_height="64dp"
@@ -53,7 +53,7 @@
             android:text="とじる"
             android:textColor="@android:color/white"
             android:textSize="10dp" />
-    </takenoko.tech.blackboardapp.view.OpenMenuView>
+    </tech.takenoko.blackboardapp.view.OpenMenuView>
     <include layout="@layout/layout_status" />
     <include layout="@layout/layout_setting" />
     <include layout="@layout/layout_import" />

@@ -33,7 +33,7 @@
                 android:layout_marginTop="20dp"
                 android:text=""
                 android:textColor="@color/colorSubText"/>
-            <takenoko.tech.blackboardapp.view.IOGridView
+            <tech.takenoko.blackboardapp.view.IOGridView
                 android:id="@+id/import_grid"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
