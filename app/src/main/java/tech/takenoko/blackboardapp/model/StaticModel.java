@@ -46,6 +46,11 @@ public class StaticModel {
     @Getter @Setter
     static DialogMode dialogMode = DialogMode.NONE;
 
+    /** オーバーレイ表示 */
+    public enum OverlayMode{ SHOW, HIDDEN }
+    @Getter @Setter
+    static OverlayMode overlayMode = OverlayMode.HIDDEN;
+
     /** 設定表示 */
     public enum SettingMode{ NONE, VIEW }
     @Getter @Setter

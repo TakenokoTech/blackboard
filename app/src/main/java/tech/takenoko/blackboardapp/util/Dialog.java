@@ -33,6 +33,7 @@ public class Dialog {
         TextView disagreeButton = (TextView) ((MainActivity)context).findViewById(R.id.dialog_disagree);
         TextView importAgreeButton = (TextView) ((MainActivity)context).findViewById(R.id.import_agree);
         TextView importDisagreeButton = (TextView) ((MainActivity)context).findViewById(R.id.import_disagree);
+        TextView importDeleteButton = (TextView) ((MainActivity)context).findViewById(R.id.import_delete);
 
 
         agreeButton.setOnClickListener(new View.OnClickListener() {
@@ -75,9 +76,17 @@ public class Dialog {
                 ((MainActivity)context).upDate();
             }
         });
+        importDeleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(log, "OnClickToImportDelete");
+                clickToImport(ClickAction.OTHER, (Activity)context);
+                ((MainActivity)context).upDate();
+            }
+        });
     }
 
-    enum ClickAction {AGREE, DISAGREE}
+    enum ClickAction {AGREE, DISAGREE, OTHER}
     private static void clickToShare(ClickAction action, Activity activity) {
         if(action == ClickAction.AGREE) {
             try {
@@ -107,10 +116,13 @@ public class Dialog {
     }
     private static void clickToImport(ClickAction action, Activity activity) {
         if(action == ClickAction.AGREE && StaticModel.getIoDialogMode() == StaticModel.IoDialogMode.IMPORT) {
-            UtilStrage.load(activity, IOGridView.getSelectFileName());
+            Strage.load(activity, IOGridView.getSelectFileName());
         }
         if(action == ClickAction.AGREE && StaticModel.getIoDialogMode() == StaticModel.IoDialogMode.EXPORT) {
-            UtilStrage.store(activity, IOGridView.getSelectFileName());
+            Strage.store(activity, IOGridView.getSelectFileName());
+        }
+        if(action == ClickAction.OTHER) {
+            Strage.delete(activity, IOGridView.getSelectFileName());
         }
         StaticModel.setIoDialogMode(StaticModel.IoDialogMode.NONE);
     }

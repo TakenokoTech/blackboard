@@ -18,7 +18,7 @@ import java.util.List;
 
 import tech.takenoko.blackboardapp.R;
 import tech.takenoko.blackboardapp.model.SettingModel;
-import tech.takenoko.blackboardapp.util.UtilStrage;
+import tech.takenoko.blackboardapp.util.Strage;
 
 /**
  * Created by たけのこ on 2017/05/08.
@@ -43,12 +43,12 @@ public class IOGridView extends GridView {
 
     public static void update() {
         list = new ArrayList<>();
-        list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_01)));
-        list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_02)));
-        list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_03)));
-        list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_04)));
-        list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_05)));
-        list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_06)));
+        list.add(Strage.get(context, context.getResources().getString(R.string.io_file_01)));
+        list.add(Strage.get(context, context.getResources().getString(R.string.io_file_02)));
+        list.add(Strage.get(context, context.getResources().getString(R.string.io_file_03)));
+        list.add(Strage.get(context, context.getResources().getString(R.string.io_file_04)));
+        list.add(Strage.get(context, context.getResources().getString(R.string.io_file_05)));
+        list.add(Strage.get(context, context.getResources().getString(R.string.io_file_06)));
         //list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_07)));
         //list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_08)));
         //list.add(UtilStrage.get(context, context.getResources().getString(R.string.io_file_09)));

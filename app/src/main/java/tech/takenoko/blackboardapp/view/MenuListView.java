@@ -33,8 +33,8 @@ public class MenuListView extends ListView {
         model.getAdapter().add(getResources().getString(R.string.menu_eraser), getResources().getDrawable(R.drawable.ic_blackbord_ere), new OnClickToEraser());
         model.getAdapter().add(getResources().getString(R.string.menu_clear), getResources().getDrawable(R.drawable.ic_garbage_can), new OnClickToClear());
         model.getAdapter().add(getResources().getString(R.string.menu_share), getResources().getDrawable(R.drawable.ic_share), new OnClickToShare());
-        model.getAdapter().add("ほぞん", getResources().getDrawable(R.drawable.ic_download), new OnClickToDownload());
-        model.getAdapter().add(getResources().getString(R.string.menu_import), getResources().getDrawable(R.drawable.ic_image), new OnClickToImport());
+        model.getAdapter().add(getResources().getString(R.string.menu_save), getResources().getDrawable(R.drawable.ic_download), new OnClickToExport());
+        model.getAdapter().add(getResources().getString(R.string.menu_load), getResources().getDrawable(R.drawable.ic_image), new OnClickToImport());
         model.getAdapter().add(getResources().getString(R.string.menu_setting), getResources().getDrawable(R.drawable.ic_setting), new OnClickToSetting());
         setAdapter(model.getAdapter());
     }
@@ -71,10 +71,10 @@ public class MenuListView extends ListView {
             DrawSurfaceView.share((Activity)context);
         }
     }
-    private class OnClickToDownload implements View.OnClickListener {
+    private class OnClickToExport implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            Log.i(log, "OnClickToDownload");
+            Log.i(log, "OnClickToExport");
             Debuger.print(context, "OnClickToDownload");
             StaticModel.setIoDialogMode(StaticModel.IoDialogMode.EXPORT);
             ((MainActivity)context).upDate();

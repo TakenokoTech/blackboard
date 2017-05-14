@@ -14,7 +14,7 @@ import tech.takenoko.blackboardapp.model.StorageModel;
  * Created by たけのこ on 2017/05/06.
  */
 
-public class UtilStrage {
+public class Strage {
 
     final static String log = "----UtilStrage----";
 
@@ -52,6 +52,19 @@ public class UtilStrage {
             return true;
         } catch (Exception e) {
             Log.d(log, "bad load");
+            return false;
+        }
+    }
+
+    /** 削除 */
+    public static boolean delete(Context context, String fileName) {
+        if(fileName == null) fileName = FILE_NAME;
+        try {
+            context.deleteFile(fileName);
+            Log.d(log, "delete  " + fileName);
+            return true;
+        } catch (Exception e) {
+            Log.d(log, "bad delete");
             return false;
         }
     }

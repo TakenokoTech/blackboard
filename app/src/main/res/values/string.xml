@@ -7,22 +7,25 @@
     <string name="menu_eraser">ERASER</string>
     <string name="menu_clear">CLEAR</string>
     <string name="menu_share">SHARE</string>
-    <string name="menu_import">SAVE</string>
+    <string name="menu_load">LOAD</string>
+    <string name="menu_save">SAVE</string>
     <string name="menu_setting">SETTING</string>
     <!-- ステータス -->
     <string name="status_mode">MODE</string>
     <!-- オーバーレイ -->
     <string name="overlay_loading">loading now...</string>
     <!-- 読み込みダイアログ -->
-    <string name="import_title">LOAD</string>
-    <string name="import_text">Please select an image.</string>
-    <string name="import_agree">done</string>
-    <string name="import_disagree">cancel</string>
+    <string name="load_title">LOAD</string>
+    <string name="load_text">Please select an image.</string>
+    <string name="load_delete">delete</string>
+    <string name="load_agree">done</string>
+    <string name="load_disagree">cancel</string>
     <!-- 保存ダイアログ -->
-    <string name="export_title">SAVE</string>
-    <string name="export_text">Please select the image to be overwritten.\n※Can not be undone.</string>
-    <string name="export_agree">done</string>
-    <string name="export_disagree">cancel</string>
+    <string name="save_title">SAVE</string>
+    <string name="save_text">Please select the image to be overwritten.\n※Can not be undone.</string>
+    <string name="save_delete">delete</string>
+    <string name="save_agree">done</string>
+    <string name="save_disagree">cancel</string>
     <!-- 全消去ダイアログ -->
     <string name="dialog_clear_title">Clear</string>
     <string name="dialog_clear_text">Are you sure you want to delete the image?\n※Not be restored.</string>

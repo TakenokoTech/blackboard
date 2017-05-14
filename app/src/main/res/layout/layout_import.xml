@@ -4,8 +4,12 @@
     android:id="@+id/import_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="invisible"
-    android:background="#be000000">
+    android:visibility="invisible">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#be000000"
+        android:clickable="true" />
     <RelativeLayout
         android:layout_width="420dp"
         android:layout_height="match_parent"
@@ -42,34 +46,56 @@
                 android:verticalSpacing="4dp"
                 android:horizontalSpacing="4dp"/>
         </LinearLayout>
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
+            android:layout_alignParentBottom="true"
             android:background="#FFF"
-            android:layout_alignParentBottom="true">
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+            <TextView
+                android:id="@+id/import_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:background="#FFF"
+                android:padding="8dp"
+                android:text="@string/load_delete"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="#FFF"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
             <TextView
                 android:id="@+id/import_disagree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#FFF"
-                android:text="disagree"
-                android:padding="8dp"
                 android:layout_margin="2dp"
-                android:textSize="18sp"
-                android:textColor="@color/accent_material_light" />
+                android:background="#FFF"
+                android:padding="8dp"
+                android:text="disagree"
+                android:textColor="@color/accent_material_light"
+                android:textSize="18sp" />
+
             <TextView
                 android:id="@+id/import_agree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#FFF"
-                android:text="agree"
-                android:padding="8dp"
                 android:layout_margin="2dp"
-                android:textSize="18sp"
-                android:textColor="@color/accent_material_light" />
+                android:background="#FFF"
+                android:padding="8dp"
+                android:text="agree"
+                android:textColor="@color/accent_material_light"
+                android:textSize="18sp" />
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

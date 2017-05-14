@@ -17,7 +17,7 @@ import tech.takenoko.blackboardapp.model.SettingModel;
 import tech.takenoko.blackboardapp.model.StaticModel;
 import tech.takenoko.blackboardapp.util.Dialog;
 import tech.takenoko.blackboardapp.util.Setting;
-import tech.takenoko.blackboardapp.util.UtilStrage;
+import tech.takenoko.blackboardapp.util.Strage;
 import tech.takenoko.blackboardapp.view.IOGridView;
 
 import static tech.takenoko.blackboardapp.model.SettingModel.FlameBool.OFF;
@@ -85,14 +85,14 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         Log.d(log, "onResume  " + EnhCanvasModel.getBitmaps().size());
         overlayLayout.setVisibility(View.VISIBLE);
-        UtilStrage.load(this, null);
+        Strage.load(this, null);
         overlayLayout.setVisibility(View.INVISIBLE);
     }
     @Override
     protected void onPause() {
         super.onPause();
         Log.d(log, "onDestroy  " + EnhCanvasModel.getBitmaps().size());
-        UtilStrage.store(this, null);
+        Strage.store(this, null);
     }
 
     public void upDate() {
@@ -113,18 +113,18 @@ public class MainActivity extends AppCompatActivity {
         switch (StaticModel.getIoDialogMode()) {
             case IMPORT:
                 IOGridView.update();
-                importTitle.setText(getResources().getString(R.string.import_title));
-                importText.setText(getResources().getString(R.string.import_text));
-                importAgree.setText(getResources().getString(R.string.import_agree));
-                importDisagree.setText(getResources().getString(R.string.import_disagree));
+                importTitle.setText(getResources().getString(R.string.load_title));
+                importText.setText(getResources().getString(R.string.load_text));
+                importAgree.setText(getResources().getString(R.string.load_agree));
+                importDisagree.setText(getResources().getString(R.string.load_disagree));
                 importLayout.setVisibility(View.VISIBLE);
                 break;
             case EXPORT:
                 IOGridView.update();
-                importTitle.setText(getResources().getString(R.string.export_title));
-                importText.setText(getResources().getString(R.string.export_text));
-                importAgree.setText(getResources().getString(R.string.export_agree));
-                importDisagree.setText(getResources().getString(R.string.export_disagree));
+                importTitle.setText(getResources().getString(R.string.save_title));
+                importText.setText(getResources().getString(R.string.save_text));
+                importAgree.setText(getResources().getString(R.string.save_agree));
+                importDisagree.setText(getResources().getString(R.string.save_disagree));
                 importLayout.setVisibility(View.VISIBLE);
                 break;
             default:
@@ -201,6 +201,12 @@ public class MainActivity extends AppCompatActivity {
                 settingLayout.setVisibility(View.INVISIBLE);
                 break;
         }
+        switch (StaticModel.getOverlayMode()) {
+            case SHOW:
+                overlayLayout.setVisibility(View.VISIBLE);
+            default:
+                overlayLayout.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void debug() {
@@ -212,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 overlayLayout.setVisibility(View.VISIBLE);
-                UtilStrage.store(getBaseContext(), "storageModel1.obj");
+                Strage.store(getBaseContext(), "storageModel1.obj");
                 overlayLayout.setVisibility(View.INVISIBLE);
             }
         });
@@ -220,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 overlayLayout.setVisibility(View.VISIBLE);
-                UtilStrage.load(getBaseContext(), "storageModel1.obj");
+                Strage.load(getBaseContext(), "storageModel1.obj");
                 overlayLayout.setVisibility(View.INVISIBLE);
             }
         });
@@ -228,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 overlayLayout.setVisibility(View.VISIBLE);
-                UtilStrage.store(getBaseContext(), "storageModel2.obj");
+                Strage.store(getBaseContext(), "storageModel2.obj");
                 overlayLayout.setVisibility(View.INVISIBLE);
             }
         });
@@ -236,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 overlayLayout.setVisibility(View.VISIBLE);
-                UtilStrage.load(getBaseContext(), "storageModel2.obj");
+                Strage.load(getBaseContext(), "storageModel2.obj");
                 overlayLayout.setVisibility(View.INVISIBLE);
             }
         });
