@@ -11,10 +11,15 @@ import static tech.takenoko.blackboardapp.model.StaticModel.DebugMode.FALSE;
 
 public class StaticModel {
 
+    /** 全体状態 */
+    public enum AppStatus{ ACTIVE, STOP, RESTART }
+    @Getter @Setter
+    static AppStatus appStatus = AppStatus.ACTIVE;
+
     /** メニュー表示状態 */
     public enum MenuMode{ INVISIBLE, VISIBLE }
     @Getter @Setter
-    static MenuMode menuMode = MenuMode.VISIBLE;
+    static MenuMode menuMode = MenuMode.INVISIBLE;
 
     /** ペンモード */
     public enum PenMode{ PEN, ERASER }
@@ -32,7 +37,7 @@ public class StaticModel {
     static DebugMode debugMode = FALSE;
 
     /** ステータス表示 */
-    public enum ViewStatus{ NONE, VIEW, SUB}
+    public enum ViewStatus{ NONE, VIEW, SUB }
     @Getter @Setter
     static ViewStatus viewStatus = ViewStatus.VIEW;
 

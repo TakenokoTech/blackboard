@@ -1,5 +1,6 @@
 package tech.takenoko.blackboardapp;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +16,9 @@ import butterknife.ButterKnife;
 import tech.takenoko.blackboardapp.model.EnhCanvasModel;
 import tech.takenoko.blackboardapp.model.SettingModel;
 import tech.takenoko.blackboardapp.model.StaticModel;
+import tech.takenoko.blackboardapp.util.BannerAdmob;
 import tech.takenoko.blackboardapp.util.Dialog;
+import tech.takenoko.blackboardapp.util.InterstitialAdmob;
 import tech.takenoko.blackboardapp.util.Setting;
 import tech.takenoko.blackboardapp.util.Strage;
 import tech.takenoko.blackboardapp.view.IOGridView;
@@ -43,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.load2_button) TextView load2Button;
     //-----------------------------------------------------
     @BindView(R.id.overlay_layout) RelativeLayout overlayLayout;
+    //-----------------------------------------------------
+    @BindView(R.id.admob_layout) RelativeLayout admobLayout;
     //-----------------------------------------------------
     @BindView(R.id.status_layout) RelativeLayout statusLayout;
     @BindView(R.id.status_image) ImageView statusImage;
@@ -77,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         Dialog.button(this);
         Setting.button(this);
+        BannerAdmob.setup(this);
+        InterstitialAdmob.setup(this);
         upDate();
         debug();
     }
@@ -93,6 +100,15 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         Log.d(log, "onDestroy  " + EnhCanvasModel.getBitmaps().size());
         Strage.store(this, null);
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(StaticModel.getAppStatus() == StaticModel.AppStatus.RESTART) {
+            Intent intent = new Intent();
+            intent.setClass(this, getClass());
+            startActivity(intent);
+        }
     }
 
     public void upDate() {
@@ -174,12 +190,14 @@ public class MainActivity extends AppCompatActivity {
                 statusSub.setVisibility(View.INVISIBLE);
                 menuLayout.setVisibility(View.INVISIBLE);
                 debugLayout.setVisibility(View.INVISIBLE);
+                admobLayout.setVisibility(View.INVISIBLE);
                 openMenuImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu));
                 openMenuText.setText(getResources().getString(R.string.menu_open_button));
                 break;
             default:
                 menuLayout.setVisibility(View.VISIBLE);
-                debugLayout.setVisibility(View.VISIBLE);
+                debugLayout.setVisibility(View.INVISIBLE);
+                admobLayout.setVisibility(View.VISIBLE);
                 openMenuImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_close));
                 openMenuText.setText(getResources().getString(R.string.menu_close_button));
                 break;

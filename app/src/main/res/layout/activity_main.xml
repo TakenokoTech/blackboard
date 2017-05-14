@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
     <include layout="@layout/layout_debuger"/>
+    <include layout="@layout/layout_admob" />
     <RelativeLayout
         android:id="@+id/menu_layout"
         android:layout_width="64dp"

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "254893171827",
+    "firebase_url": "https://blackboard-ae460.firebaseio.com",
+    "project_id": "blackboard-ae460",
+    "storage_bucket": "blackboard-ae460.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254893171827:android:c4b9093e878ffec1",
+        "android_client_info": {
+          "package_name": "tech.takenoko.blackboardapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254893171827-48a9va3mme9o7dtqtp15m9qm9q06rkvb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClhof35HS2eAu4lxu81gXwFXoWRmKDZN0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

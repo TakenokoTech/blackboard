@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -33,6 +34,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    compile 'com.google.firebase:firebase-ads:10.0.1'
 }
 repositories {
     mavenCentral()
@@ -40,3 +42,4 @@ repositories {
         url 'https://oss.sonatype.org/content/repositories/snapshots/'
     }
 }
+apply plugin: 'com.google.gms.google-services'

@@ -107,16 +107,22 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     @Override
     public void run() {
         while (true) {
-            if(holder == null) continue;
-            Canvas canvas = holder.lockCanvas();
-            if(canvas == null) continue;
-            canvas.drawColor(0,PorterDuff.Mode.CLEAR);
-            doDraw();
-            for(int i = 0; i < eCanvas.getLength(); i++) {
-                canvas.drawBitmap(eCanvas.getBitmap(i), 0, 0, null);
+            if(holder == null || StaticModel.getAppStatus() == StaticModel.AppStatus.STOP) continue;
+            Canvas canvas = null;
+            try {
+                canvas = holder.lockCanvas();
+                synchronized (holder) {
+                    if (canvas == null) continue;
+                    canvas.drawColor(0, PorterDuff.Mode.CLEAR);
+                    doDraw();
+                    for (int i = 0; i < eCanvas.getLength(); i++) {
+                        canvas.drawBitmap(eCanvas.getBitmap(i), 0, 0, null);
+                    }
+                    canvas = doMask(canvas);
+                }
+            } finally {
+                if(canvas != null) holder.unlockCanvasAndPost(canvas);
             }
-            canvas = doMask(canvas);
-            holder.unlockCanvasAndPost(canvas);
         }
     }
     @Override
@@ -141,6 +147,7 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     }
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
+        Log.i(log, "surfaceCreated");
         holder = surfaceHolder;
         thread = new Thread(this);
     }
@@ -150,7 +157,7 @@ public class DrawSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         model.setSurfaceX(width);
         model.setSurfaceY(height);
         if (thread != null) thread.start();
-        eCanvas.addCanvas(width, height);
+        if (eCanvas.getLength() == 0) eCanvas.addCanvas(width, height);
         sens.settingMask(model);
     }
     @Override
