@@ -41,4 +41,7 @@
     <string name="dialog_setting_background">保存時の背景色</string>
     <string name="dialog_setting_flame">保存時の枠</string>
     <string name="dialog_setting_close">とじる</string>
+    <!-- シェア -->
+    <string name="chooser_title">画像のシェア</string>
+    <string name="share_text">【黒板アプリ！】で描きました！</string>
 </resources>

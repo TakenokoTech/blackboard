@@ -46,10 +46,10 @@
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="16dp" />
-            <tech.takenoko.blackboardapp.util.PenCanvas
+            <!-- tech.takenoko.blackboardapp.util.PenCanvas
                 android:id="@+id/status_view"
                 android:layout_width="match_parent"
-                android:layout_height="24dp"/>
+                android:layout_height="24dp"/ -->
         </LinearLayout>
     </tech.takenoko.blackboardapp.view.StatusView>
     <LinearLayout

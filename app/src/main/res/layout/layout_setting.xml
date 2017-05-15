@@ -100,12 +100,12 @@
                 android:id="@+id/setting_close"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#FFF"
                 android:text="@string/dialog_setting_close"
                 android:padding="8dp"
                 android:layout_margin="2dp"
                 android:textSize="18sp"
-                android:textColor="@color/accent_material_light" />
+                android:textColor="@color/accent_material_light"
+                android:background="@drawable/btn_ripple"/>
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

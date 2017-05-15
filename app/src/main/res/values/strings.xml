@@ -12,4 +12,7 @@
     <string name="io_file_08">storageModel8.obj</string>
     <string name="io_file_09">storageModel9.obj</string>
     <string name="io_file_10">storageModel10.obj</string>
+    <!-- Admob -->
+    <string name="banner_ad_test_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 </resources>

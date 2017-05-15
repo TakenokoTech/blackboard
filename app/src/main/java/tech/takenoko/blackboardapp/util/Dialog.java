@@ -97,9 +97,8 @@ public class Dialog {
                 // boolean res = EnhCanvas.getBitmap(0).compress(Bitmap.CompressFormat.PNG, 100, out);
                 Debuger.print((Context) activity, Uri.fromFile(imageFile).getPath() + "::" + res);
                 ShareCompat.IntentBuilder builder = ShareCompat.IntentBuilder.from(activity);
-                builder.setChooserTitle("setChooserTitle")
-                        .setSubject("setSubject")
-                        .setText("setText")
+                builder.setChooserTitle(activity.getString(R.string.chooser_title))
+                        .setText(activity.getString(R.string.share_text))
                         .setStream(Uri.fromFile(imageFile))
                         .setType("image/png")
                         .startChooser();
