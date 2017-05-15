@@ -73,6 +73,13 @@ public class EnhCanvasModel {
         return bitmap;
     }
 
+    public static void clean() {
+        for(int i = 0; i < bitmaps.size(); i++) {
+            bitmaps.get(i).recycle();
+            bitmaps.set(i, null);
+        }
+    }
+
     /** フレーム */
     private static void addFlame(Bitmap bitmap, Canvas canvas) {
         float f = (int) bitmap.getHeight() / 25;

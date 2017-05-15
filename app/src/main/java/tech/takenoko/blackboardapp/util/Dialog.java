@@ -117,15 +117,23 @@ public class Dialog {
     private static void clickToImport(ClickAction action, Activity activity) {
         if(action == ClickAction.AGREE && StaticModel.getIoDialogMode() == StaticModel.IoDialogMode.IMPORT) {
             Strage.load(activity, IOGridView.getSelectFileName());
-            InterstitialAdmob.showInterstitial();
+            loadAdmob(activity);
         }
         if(action == ClickAction.AGREE && StaticModel.getIoDialogMode() == StaticModel.IoDialogMode.EXPORT) {
             Strage.store(activity, IOGridView.getSelectFileName());
-            InterstitialAdmob.showInterstitial();
+            loadAdmob(activity);
         }
         if(action == ClickAction.OTHER) {
             Strage.delete(activity, IOGridView.getSelectFileName());
         }
         StaticModel.setIoDialogMode(StaticModel.IoDialogMode.NONE);
+    }
+
+    //
+    private static void loadAdmob(Activity activity) {
+//        StaticModel.setAppStatus(StaticModel.AppStatus.STOP);
+//        Intent intent = new Intent(activity, SubActivity.class);
+//        activity.startActivity(intent);
+//        activity.finish();
     }
 }
